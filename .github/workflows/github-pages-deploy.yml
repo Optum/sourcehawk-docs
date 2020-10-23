@@ -1,0 +1,50 @@
+name: Github Pages Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Github Ref'
+        required: true
+        default: 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - name: Setup NVM Cache
+        uses: actions/cache@v2
+        env:
+          CACHE_NAME: cache-nvm
+        with:
+          path: ~/.nvm
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('**/npmw') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Setup NPM Cache
+        uses: actions/cache@v2
+        env:
+          CACHE_NAME: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: NPM Install
+        run: ./npmw install --no-fund --no-progress --loglevel=error
+      - name: NPM Deploy
+        if: success()
+        run: git config user.name "$GIT_USERNAME" && git config user.email "$GIT_EMAIL" && ./npmw run deploy
+        env:
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          GIT_USER: ${{ secrets.GITHUB_TOKEN }} # Required by Docusaurus to push to gh-pages branch
