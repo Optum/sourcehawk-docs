@@ -1,0 +1,43 @@
+name: Github Pages Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Github Ref'
+        required: false
+        default: 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup NVM Cache
+        uses: actions/cache@v2
+        env:
+          CACHE_NAME: nvm
+        with:
+          path: ~.nvm
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('**/npmw') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.CACHE_NAME }}
+      - name: Setup NPM Cache
+        uses: actions/cache@v2
+        env:
+          CACHE_NAME: npm
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.CACHE_NAME }}
+      - name: Install NPM Dependencies
+        run: ./npmw install --no-fund --no-progress --loglevel=error
+      - name: Build NPM Project
+        if: success()
+        run: ./npmw run build
+      - name: Publish to Github Pages
+        if: success()
+        uses: jamesives/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build

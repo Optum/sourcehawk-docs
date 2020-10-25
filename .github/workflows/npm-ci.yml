@@ -1,0 +1,30 @@
+name: NPM CI
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup NVM Cache
+        uses: actions/cache@v2
+        env:
+          CACHE_NAME: nvm
+        with:
+          path: ~.nvm
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('**/npmw') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.CACHE_NAME }}
+      - name: Setup NPM Cache
+        uses: actions/cache@v2
+        env:
+          CACHE_NAME: npm
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-build-${{ env.CACHE_NAME }}
+      - name: Install NPM Dependencies
+        run: ./npmw install --no-fund --no-progress --loglevel=error
+      - name: Build NPM Project
+        run: ./npmw run build
