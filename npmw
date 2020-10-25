@@ -7,12 +7,12 @@
 #######################################################################################
 
 # Versions
-NVM_VERSION="0.36.0"
-NODE_VERSION="14.14.0"
+NVM_VERSION="${1:-'0.36.0'}"
+NODE_VERSION="${2:-'14.14.0'}"
 
 # Setup NVM
 setup_nvm() {
-  export NVM_DIR="$HOME/.nvm"
+  NVM_DIR="${HOME}/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
@@ -22,14 +22,17 @@ setup_nvm
 
 # Install nvm if necessary
 if ! hash nvm 2>/dev/null; then
+
+  # Download nvm from Github
   curl -o- "https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh" | bash
+
+  # Export again in case we had to install. Sometimes NVM doesnt do a good job manually exporting quick enough.
+  setup_nvm
+
 fi
 
-# Export again in case we had to install. Sometimes NVM doesnt do a good job manually exporting quick enough.
-setup_nvm
-
-# Install node version
-nvm install $NODE_VERSION
+# Install node version (if necessary)
+nvm ls --no-colors --no-alias | grep -vq "v$NODE_VERSION" || nvm install $NODE_VERSION
 
 # Execute the npm command
 npm "$@"
