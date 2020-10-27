@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[32],{88:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Sourcehawk Open Source","permalink":"/sourcehawk-docs/blog/Sourcehawk"},{"title":"Sourcehawk Takes Flight","permalink":"/sourcehawk-docs/blog/Sourcehawk"}]}')}}]);

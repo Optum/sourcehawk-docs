@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[20],{77:function(s){s.exports=JSON.parse('{"allTagsPath":"/sourcehawk-docs/blog/tags","slug":"oss","name":"oss","count":1,"permalink":"/sourcehawk-docs/blog/tags/oss"}')}}]);
