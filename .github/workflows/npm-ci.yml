@@ -21,7 +21,9 @@ jobs:
         env:
           CACHE_NAME: npm
         with:
-          path: '**/node_modules'
+          path: |
+            ~.npm
+            '**/node_modules'
           key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-build-${{ env.CACHE_NAME }}
       - name: Install NPM Dependencies
