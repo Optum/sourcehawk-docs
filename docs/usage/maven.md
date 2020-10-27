@@ -12,8 +12,8 @@ For detailed configuration and usage, see the [plugin docs](https://optum.github
 
 ## Simple Demo
 
-<a target="_blank" href={useBaseUrl('img/sourcehawk-maven-demo.gif')}>
-    <img alt="Maven Demo" src={useBaseUrl('img/sourcehawk-maven-demo.gif')} />
+<a target="_blank" href={useBaseUrl('img/demo/maven.gif')}>
+    <img alt="Maven Demo" src={useBaseUrl('img/demo/maven.gif')} />
 </a>
 
 ## Basic Usage
