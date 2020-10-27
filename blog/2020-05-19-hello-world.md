@@ -1,5 +1,5 @@
 ---
-slug: Sourcehawk
+slug: sourcehawk-hello-world
 title: Sourcehawk Takes Flight
 author: Christian Oestreich
 author_title: Sourcehawk Core Team
