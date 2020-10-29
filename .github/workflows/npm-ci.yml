@@ -3,6 +3,16 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '.github/**'
+      - '.gitignore'
+      - 'attribute.txt'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'INDIVIDUAL_CONTRIBUTOR_LICENSE.md'
+      - 'LICENSE'
+      - 'NOTICE.txt'
+      - '**/README.md'
 jobs:
   build:
     runs-on: ubuntu-latest
