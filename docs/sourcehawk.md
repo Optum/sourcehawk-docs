@@ -4,7 +4,7 @@ title: Welcome To Sourcehawk
 sidebar_label: About Sourcehawk
 ---
 
-![Maven Central Version](https://img.shields.io/maven-central/v/com.optum.sourcehawk/sourcehawk-core.svg?label=Maven%20Central)
+![Maven Central Version](https://img.shields.io/maven-central/v/com.optum.sourcehawk/sourcehawk-core.svg?label=Maven%20Central) ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/optumopensource/sourcehawk?label=DockerHub&logo=docker&sort=semver)
 
 ### Sourcehawk
 

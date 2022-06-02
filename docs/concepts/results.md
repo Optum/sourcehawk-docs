@@ -8,20 +8,12 @@ The output of the scans, regardless of the tool used to scan, is a scan result. 
 
 Each protocol will produce one to many enforcer results which get rolled up into a single scan result.
 
-## Function URL
-In the below examples `<scan-function-url>` and `<validate-config-function-url>` are the URLs in which the functions are exposed 
-on the OpenFaas platform.  
-
-*For example:*
-- `https://sourcehawk-scan.openfaas-example.com`
-- `https://sourcehawk-validate-config.openfaas-example.com`
-
 ## Example Result JSON
 
-This is an example response from the scan serialized to json as run by
+This is an example response from the scan serialized to json as run by:
 
 ```sh
-curl -k -s -X POST -H "Accept: application/json" <scan-function-url>/org/repo | jq
+docker run -v "$(pwd):/home/sourcehawk" optumopensource/sourcehawk:0.6.0 scan -f JSON | jq
 ```
 
 ```json
@@ -146,12 +138,13 @@ curl -k -s -X POST -H "Accept: application/json" <scan-function-url>/org/repo | 
 }
 ```
 
-## Example Plain Text
+## Example Result Plain Text
 
 This is an example response from the scan in plain text as run by:
 
 ```sh
-curl -k -s -X POST -H "Accept: text/plain" <scan-function-url>/org/repo | jq
+ docker run -v "$(pwd):/home/sourcehawk" optumopensource/sourcehawk:0.6.0 scan -f TEXT
+
 ```
 
 ```shell script
