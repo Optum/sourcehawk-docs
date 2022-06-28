@@ -10,9 +10,7 @@ sidebar_label: About Sourcehawk
 
 Thank you for looking at the docs.  Getting started using the plugin locally and as a remote scan funciton are both pretty simple.
 
-We will cover how to accomplish this in the [usage](usage/general) section.  We currently provide a [Maven plugin](usage/maven) as well as a downloadable [CLI](usage/cli) interface to use.  
-
-There is a FaaS implementation behing the [Sourcehawk UI](usage/sourcehawk-ui) that we are working on integrating with CI systems.  This can be run manually for now.
+We will cover how to accomplish this in the [usage](usage/general) section.  We currently provide a [Maven plugin](usage/maven) as well as a downloadable [CLI](usage/cli) interface to use.
 
 ### Contributing
 
