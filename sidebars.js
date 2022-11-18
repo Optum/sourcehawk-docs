@@ -10,7 +10,7 @@
 module.exports = {
     docs: {
         Sourcehawk: ['sourcehawk'],
-        Usage: ['usage/general', 'usage/maven', 'usage/cli', 'usage/faas', 'usage/sourcehawk-ui'],
+        Usage: ['usage/general', 'usage/maven', 'usage/cli', 'usage/faas', 'usage/docker'],
         Concepts: [
             'concepts/protocols',
             'concepts/enforcers',

@@ -4,15 +4,13 @@ title: Welcome To Sourcehawk
 sidebar_label: About Sourcehawk
 ---
 
-![Maven Central Version](https://img.shields.io/maven-central/v/com.optum.sourcehawk/sourcehawk-core.svg?label=Maven%20Central)
+![Maven Central Version](https://img.shields.io/maven-central/v/com.optum.sourcehawk/sourcehawk-core.svg?label=Maven%20Central) ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/optumopensource/sourcehawk?label=DockerHub&logo=docker&sort=semver)
 
 ### Sourcehawk
 
 Thank you for looking at the docs.  Getting started using the plugin locally and as a remote scan funciton are both pretty simple.
 
-We will cover how to accomplish this in the [usage](usage/general) section.  We currently provide a [Maven plugin](usage/maven) as well as a downloadable [CLI](usage/cli) interface to use.  
-
-There is a FaaS implementation behing the [Sourcehawk UI](usage/sourcehawk-ui) that we are working on integrating with CI systems.  This can be run manually for now.
+We will cover how to accomplish this in the [usage](usage/general) section.  We currently provide a [Maven plugin](usage/maven) as well as a downloadable [CLI](usage/cli) interface to use.
 
 ### Contributing
 
